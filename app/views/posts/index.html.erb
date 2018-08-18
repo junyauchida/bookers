@@ -1,0 +1,45 @@
+<h1>books</h1>
+<% if @post.errors.any? %>
+  <div id="error_explanation" class="alert alert-danger">
+    <ul>
+      <% @post.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<table>
+	<thead>
+		<tr>
+			<th>Title</th>
+			<th>Body</th>
+			<th colspan="3"></th>
+		</tr>
+	</thead>
+
+	<tbody>
+    	<% @posts.each do |post| %>
+			<tr>
+				<td><%= post.title %></td>
+				<td><%= post.body %></td>
+				<td><%= link_to "show", post_path(post), class: "show_#{post.id}" %></td>
+				<td><%= link_to "edit", edit_post_path(post), class: "edit_#{post.id}" %></td>
+				<td><%= link_to "destroy", post_path(post), method: :delete, "data-confirm" => "Are you sure?", class: "destroy_#{post.id}" %></td>
+			</tr>
+    	<% end %>
+	</tbody>
+</table>
+
+<h1>new book</h1>
+
+<%= form_for(@post) do |f| %>
+
+	<h4>title</h4>
+	<%= f.text_field :title %>
+
+	<h4>body</h4>
+	<%= f.text_area :body %>
+
+	<%= f.submit 'create book' %>
+<% end %>

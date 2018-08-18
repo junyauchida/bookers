@@ -1,0 +1,26 @@
+<h1>editing book</h1>
+
+<% if @post.errors.any? %>
+  <div id="error_explanation" class="alert alert-danger">
+    <ul>
+      <% @post.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<%= form_for(@post) do |f| %>
+
+	<h4>title</h4>
+	<%= f.text_field :title %>
+
+	<h4>body</h4>
+	<%= f.text_area :body %>
+
+	<%= f.submit 'update book' %>
+
+	<%= link_to "show" , post_path(@post.id) %>
+	<%= link_to "back" , posts_path %>
+
+<% end %>
