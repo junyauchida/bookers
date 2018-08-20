@@ -4,8 +4,8 @@
 <h4>body</h4>
 <%= @post.body %>
 
-<%= link_to "edit" , edit_post_path(@post.id) %>
-<%= link_to "back" , posts_path %>
+<%= link_to "edit" , edit_post_path(@post.id) , class: "edit_#{@post.id}"  %>
+<%= link_to "back" , posts_path , class: "back"%>
 
 <% if flash[:notice] %>
 <p><%= flash[:notice] %></p>
